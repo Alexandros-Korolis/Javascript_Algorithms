@@ -1,52 +1,48 @@
+//Takes an array
+//Split array word by word 
+//Remove punctuation from each word
+//Add all words together 
+//Reverse that word 
+//Compare 
+
 const palindromes = function (word) {
-    let arrayWord = Array.from(word.toLowerCase());
-    let revArrayWord = [];
+    let wordToLower = word.toLowerCase();
+    let punctuationless = wordToLower.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
+    let cleanString = punctuationless.replace(/\s{2,}/g," ");
+    let wordToArray = Array.from(cleanString);   
+    let noSpaceWord = wordToArray.forEach(removeSpace);
+    let finalWord = wordToArray.join(''); 
+    let reverseWord ;
 
-    if(arrayWord.includes('!'))
-    {
-        let newArrWord = arrayWord.filter(function(e){
-            return e !== "!";
-        });
+    function removeSpace(item,index){
+        if(item.includes(' '))
+        {
+            wordToArray.splice(index,1);
+        }
+    };
 
-        for(let i = newArrWord.length - 1; i>=0; i--)
-        {
-            revArrayWord.push(newArrWord[i]);
-        }
+    const reverseString = function(a){
+        let text =a
+        var arr = []
 
-        if(revArrayWord.toString() == newArrWord.toString())
+        for(let j = text.length-1; j>=0; j--)
         {
-            return true;
+            arr.push(text[j])         
         }
-    }
-        else if(arrayWord.includes('.'))
-    {
-        let newArrWord = arrayWord.filter(function(e){
-            return e !== "!";
-        });
-    
-        for(let i = newArrWord.length - 1; i>=0; i--)
-        {
-            revArrayWord.push(newArrWord[i]);
-        }
-    
-        if(revArrayWord.toString() == newArrWord.toString())
-        {
-            return true;
-        }
-    }
-        else
-    {
-        for(let i = arrayWord.length - 1; i>=0; i--)
-        {
-            revArrayWord.push(arrayWord[i]);
-        }
+        
+        return arr.join('')
+    };
 
-        if(revArrayWord.toString() == arrayWord.toString())
-        {
-            return true;
-        }
-    }
+     reverseWord = reverseString(finalWord);
 
+     if(finalWord == reverseWord)
+     {
+        return true;
+     }
+     else
+     {
+        return false;
+     }
 };
 
 
